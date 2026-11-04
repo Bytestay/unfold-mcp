@@ -1,0 +1,31 @@
+name: publish
+
+# ByteStay copy only (marca/rebrand overlay): manual PyPI publish from a tag, with Trusted Publishing.
+# Push a tag (git tag bytestay-unfold-mcp-v0.2.2 && git push origin bytestay-unfold-mcp-v0.2.2), or run it by hand on a tag.
+on:
+  push:
+    tags: ["bytestay-unfold-mcp-v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+      - name: Check the tag matches the package version
+        run: |
+          version="$(grep -m1 '^version' pyproject.toml | cut -d'"' -f2)"
+          [ "${GITHUB_REF_NAME##*-v}" = "$version" ] || { echo "::error::tag $GITHUB_REF_NAME != version $version"; exit 1; }
+      - name: Build
+        run: uv build
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3

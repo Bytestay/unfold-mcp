@@ -1,0 +1,50 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.bytestay/unfold-mcp",
+  "description": "PDF, DOCX, PPTX and XLSX documents to Markdown for AI agents, from a URL or a local file.",
+  "repository": {
+    "url": "https://github.com/bytestay/unfold-mcp",
+    "source": "github",
+    "id": "1445856118"
+  },
+  "websiteUrl": "https://unfold.bytestay.pt/integration.html#mcp-server",
+  "version": "0.2.2",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "bytestay-unfold-mcp",
+      "version": "0.2.2",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "RAPIDAPI_KEY",
+          "description": "Your RapidAPI key",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "API_MARKET_KEY",
+          "description": "Your api.market key, used when RAPIDAPI_KEY is not set",
+          "isRequired": false,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "HFL_MARKETPLACE",
+          "description": "rapidapi or apimarket, when both keys are set",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "string",
+          "choices": [
+            "rapidapi",
+            "apimarket"
+          ]
+        }
+      ]
+    }
+  ]
+}
