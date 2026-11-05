@@ -12,8 +12,8 @@ from mcp.server.mcpserver.exceptions import ToolError
 from . import __version__
 
 RAPIDAPI_LISTING = "https://rapidapi.com/bytestay-bytestay-default/api/"
-APIMARKET_BASE = "https://prod.api.market/api/v1/hybrid-forge-lab/"
-APIMARKET_STORE = "https://api.market/store/hybrid-forge-lab/"
+APIMARKET_BASE = "https://prod.api.market/api/v1/bytestay/"
+APIMARKET_STORE = "https://api.market/store/bytestay/"
 USER_AGENT = f"unfold-mcp/{__version__} (+https://unfold.bytestay.pt)"
 TIMEOUT = httpx.Timeout(60.0, connect=10.0)
 

@@ -21,7 +21,7 @@ The server is open source (MIT). It calls the [Unfold API](https://unfold.bytest
 | marketplace | |
 |---|---|
 | RapidAPI | [plans](https://rapidapi.com/bytestay-bytestay-default/api/unfold-document-to-markdown-api/pricing) |
-| api.market | [store](https://api.market/store/hybrid-forge-lab/unfold) |
+| api.market | [store](https://api.market/store/bytestay/unfold) |
 
 ## 2. Add the server to your MCP client
 
