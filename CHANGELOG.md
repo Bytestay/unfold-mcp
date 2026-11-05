@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.3](https://github.com/hybridforgelab/unfold-mcp/compare/hybridforgelab-unfold-mcp-v0.2.2...hybridforgelab-unfold-mcp-v0.2.3) (2026-11-05)
+
+
+### Bug Fixes
+
+* point api.market links at the bytestay store slug ([#16](https://github.com/hybridforgelab/unfold-mcp/issues/16)) ([72dd8f3](https://github.com/hybridforgelab/unfold-mcp/commit/72dd8f3b322ff30c880ce3f601f49faa58cdb779))
+* point the RapidAPI listing links at the ByteStay org ([#15](https://github.com/hybridforgelab/unfold-mcp/issues/15)) ([7bc0ca6](https://github.com/hybridforgelab/unfold-mcp/commit/7bc0ca62db892c2ce0a58688d57f242241907b7d))
+
+
+### Documentation
+
+* README badges ([#13](https://github.com/hybridforgelab/unfold-mcp/issues/13)) ([828b48c](https://github.com/hybridforgelab/unfold-mcp/commit/828b48c5c4fd2fb244ced33ec91bf5e8ccafce4c))
+
 ## [0.2.2](https://github.com/hybridforgelab/unfold-mcp/compare/hybridforgelab-unfold-mcp-v0.2.1...hybridforgelab-unfold-mcp-v0.2.2) (2026-11-03)
 
 
