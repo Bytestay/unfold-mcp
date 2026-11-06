@@ -1,6 +1,7 @@
 name: publish
 
-# ByteStay copy only (marca/rebrand overlay): manual PyPI publish from a tag, with Trusted Publishing.
+# PyPI publish from a tag, with Trusted Publishing, then the MCP registry. release.yml runs it on each
+# release tag.
 # Push a tag (git tag bytestay-unfold-mcp-v0.2.2 && git push origin bytestay-unfold-mcp-v0.2.2), or run it by hand on a tag.
 on:
   push:
@@ -29,3 +30,10 @@ jobs:
         run: uv build
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@7245906fb61fa33a13554f9d5fb856fe61758086 # v1.14.3
+
+  registry:
+    needs: publish
+    permissions:
+      id-token: write
+      contents: read
+    uses: ./.github/workflows/mcp-registry.yml
