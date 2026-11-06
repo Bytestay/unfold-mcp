@@ -59,7 +59,7 @@ Without a key the server still starts. The first tool call then explains where t
 
 Also listed on Glama:
 
-[![unfold-mcp on Glama](https://glama.ai/mcp/servers/hybridforgelab/unfold-mcp/badge)](https://glama.ai/mcp/servers/hybridforgelab/unfold-mcp)
+[![unfold-mcp on Glama](https://glama.ai/mcp/servers/Bytestay/unfold-mcp/badge)](https://glama.ai/mcp/servers/Bytestay/unfold-mcp)
 
 ## 3. Tools
 
