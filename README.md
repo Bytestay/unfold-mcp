@@ -1,6 +1,6 @@
 # Unfold MCP server
 
-<!-- mcp-name: io.github.bytestay/unfold-mcp -->
+<!-- mcp-name: io.github.Bytestay/unfold-mcp -->
 
 [![M8ven Score](https://m8ven.ai/badge/mcp/hybridforgelab/unfold-mcp?variant=verified)](https://m8ven.ai/mcp/hybridforgelab/unfold-mcp?s=readme)
 [![CI](https://github.com/bytestay/unfold-mcp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bytestay/unfold-mcp/actions/workflows/ci.yml)

@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.bytestay/unfold-mcp",
+  "name": "io.github.Bytestay/unfold-mcp",
   "description": "PDF, DOCX, PPTX and XLSX documents to Markdown for AI agents, from a URL or a local file.",
   "repository": {
     "url": "https://github.com/bytestay/unfold-mcp",
