@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.4](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.3...bytestay-unfold-mcp-v0.2.4) (2026-11-06)
+
+
+### Bug Fixes
+
+* use the io.github.Bytestay namespace the MCP registry grants (case-sensitive) ([#1](https://github.com/Bytestay/unfold-mcp/issues/1)) ([50005c9](https://github.com/Bytestay/unfold-mcp/commit/50005c9e31f4b3d13eed8368f3dc635531102681))
+
 ## [0.2.3](https://github.com/hybridforgelab/unfold-mcp/compare/hybridforgelab-unfold-mcp-v0.2.2...hybridforgelab-unfold-mcp-v0.2.3) (2026-11-05)
 
 
