@@ -8,12 +8,12 @@
     "id": "1445856118"
   },
   "websiteUrl": "https://unfold.bytestay.pt/integration.html#mcp-server",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "bytestay-unfold-mcp",
-      "version": "0.2.3",
+      "version": "0.2.4",
       "runtimeHint": "uvx",
       "transport": {
         "type": "stdio"
