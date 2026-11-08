@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.6](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.5...bytestay-unfold-mcp-v0.2.6) (2026-11-08)
+
+
+### Documentation
+
+* MCP Registry badge shows the latest version ([#7](https://github.com/Bytestay/unfold-mcp/issues/7)) ([c56c36b](https://github.com/Bytestay/unfold-mcp/commit/c56c36bfe91ffdd59ee78d3ff6df34207cf369ef))
+
 ## [0.2.5](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.4...bytestay-unfold-mcp-v0.2.5) (2026-11-07)
 
 
