@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.5](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.4...bytestay-unfold-mcp-v0.2.5) (2026-11-07)
+
+
+### Documentation
+
+* add MCP registry and Glama score badges ([#6](https://github.com/Bytestay/unfold-mcp/issues/6)) ([d75e49f](https://github.com/Bytestay/unfold-mcp/commit/d75e49f1f8e057f95614e9391d5633506c0f7e30))
+* Glama badge points to the Bytestay listing ([#4](https://github.com/Bytestay/unfold-mcp/issues/4)) ([fc34916](https://github.com/Bytestay/unfold-mcp/commit/fc349166bc206ccd9b4e4fdc376cb066e1789a5c))
+
 ## [0.2.4](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.3...bytestay-unfold-mcp-v0.2.4) (2026-11-06)
 
 
