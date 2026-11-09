@@ -2,7 +2,7 @@
 
 <!-- mcp-name: io.github.Bytestay/unfold-mcp -->
 
-[![M8ven Score](https://m8ven.ai/badge/mcp/hybridforgelab/unfold-mcp?variant=verified)](https://m8ven.ai/mcp/hybridforgelab/unfold-mcp?s=readme)
+[![M8ven Score](https://m8ven.ai/badge/mcp/bytestay/unfold-mcp?variant=verified)](https://m8ven.ai/mcp/bytestay/unfold-mcp?s=readme)
 [![CI](https://github.com/bytestay/unfold-mcp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bytestay/unfold-mcp/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/bytestay-unfold-mcp)](https://pypi.org/project/bytestay-unfold-mcp/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)](https://pypi.org/project/bytestay-unfold-mcp/)
