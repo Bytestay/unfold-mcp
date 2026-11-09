@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.7](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.6...bytestay-unfold-mcp-v0.2.7) (2026-11-09)
+
+
+### Documentation
+
+* add the mcprush badge ([#11](https://github.com/Bytestay/unfold-mcp/issues/11)) ([9b85bae](https://github.com/Bytestay/unfold-mcp/commit/9b85bae938c75d9cf4127318b075feb6e52df4ed))
+* M8ven badge points to the bytestay listing ([#9](https://github.com/Bytestay/unfold-mcp/issues/9)) ([7a4dbfe](https://github.com/Bytestay/unfold-mcp/commit/7a4dbfe8e50c4da74e1ee5c8a7711ce5b1d31a41))
+
 ## [0.2.6](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.5...bytestay-unfold-mcp-v0.2.6) (2026-11-08)
 
 
