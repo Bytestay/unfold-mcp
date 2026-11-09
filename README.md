@@ -9,6 +9,7 @@
 [![License: MIT](https://img.shields.io/github/license/bytestay/unfold-mcp)](LICENSE)
 [![MCP Registry](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.modelcontextprotocol.io%2Fv0%2Fservers%3Fsearch%3Dio.github.Bytestay%2Funfold-mcp%26version%3Dlatest&query=%24.servers%5B0%5D.server.version&label=MCP%20Registry&color=blue)](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.Bytestay/unfold-mcp)
 [![Glama](https://glama.ai/mcp/servers/Bytestay/unfold-mcp/badges/score.svg)](https://glama.ai/mcp/servers/Bytestay/unfold-mcp)
+[![Unfold MCP on mcprush](https://mcprush.com/badge/bytestay-unfold-mcp/score.svg)](https://mcprush.com/to/bytestay-unfold-mcp?ref=badge)
 
 Give your AI agent the content of PDF, Word (DOCX), PowerPoint (PPTX) and Excel (XLSX) documents as Markdown, from a URL or a local file.
 
