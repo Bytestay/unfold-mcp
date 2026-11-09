@@ -1,6 +1,6 @@
 [project]
 name = "bytestay-unfold-mcp"
-version = "0.2.7"
+version = "0.2.8"
 description = "PDF, DOCX, PPTX and XLSX documents to Markdown for LLM agents, from a URL or a local file. Bring your own RapidAPI or api.market key."
 readme = "README.md"
 license = "MIT"
