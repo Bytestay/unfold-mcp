@@ -28,11 +28,18 @@ class Recorder:
         return json.loads(self.last.content)
 
 
+@pytest.fixture(autouse=True)
+def clean_env(monkeypatch):
+    """No key or setting leaks in from the developer's shell; deprecation notices start fresh."""
+    settings = [f"{prefix}_{name}" for prefix in ("BYTESTAY", "HFL") for name in ("MARKETPLACE", "API_URL", "API_BEARER")]
+    for name in ["RAPIDAPI_KEY", "API_MARKET_KEY", *settings]:
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.setattr(client, "_DEPRECATED_SEEN", set())
+
+
 @pytest.fixture
 def api(monkeypatch):
     rec = Recorder()
     monkeypatch.setattr(client, "TRANSPORT", httpx.MockTransport(rec))
-    for name in ("RAPIDAPI_KEY", "API_MARKET_KEY", "HFL_MARKETPLACE", "HFL_API_URL", "HFL_API_BEARER"):
-        monkeypatch.delenv(name, raising=False)
     monkeypatch.setenv("RAPIDAPI_KEY", "rk")
     return rec

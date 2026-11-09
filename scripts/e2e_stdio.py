@@ -1,8 +1,8 @@
 """End-to-end check of the Unfold server over stdio, as an MCP client would run it, against the real API.
 
-    HFL_API_URL=https://unfold-api.bytestay.pt HFL_API_BEARER=... python scripts/e2e_stdio.py unfold
+    BYTESTAY_API_URL=https://unfold-api.bytestay.pt BYTESTAY_API_BEARER=... python scripts/e2e_stdio.py unfold
 
-Needs either HFL_API_URL + HFL_API_BEARER (maintainers, no marketplace quota spent) or RAPIDAPI_KEY / API_MARKET_KEY.
+Needs either BYTESTAY_API_URL + BYTESTAY_API_BEARER (old names HFL_*; maintainers, no marketplace quota spent) or RAPIDAPI_KEY / API_MARKET_KEY.
 Prints one line per check and exits non-zero on any failure. Never prints a key.
 """
 import asyncio
@@ -17,7 +17,8 @@ from mcp import ClientSession
 from mcp.client.stdio import StdioServerParameters, stdio_client
 
 ROOT = Path(__file__).resolve().parent.parent
-ENV_KEYS = ("HFL_API_URL", "HFL_API_BEARER", "RAPIDAPI_KEY", "API_MARKET_KEY", "HFL_MARKETPLACE", "PATH", "HOME")
+ENV_KEYS = ("BYTESTAY_API_URL", "BYTESTAY_API_BEARER", "BYTESTAY_MARKETPLACE", "HFL_API_URL", "HFL_API_BEARER",
+            "HFL_MARKETPLACE", "RAPIDAPI_KEY", "API_MARKET_KEY", "PATH", "HOME")
 
 
 def data(result):
