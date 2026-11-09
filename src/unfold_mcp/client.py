@@ -3,6 +3,7 @@ messages an agent (and its user) can act on."""
 from __future__ import annotations
 
 import os
+import sys
 from dataclasses import dataclass
 from typing import Any
 
@@ -19,6 +20,23 @@ TIMEOUT = httpx.Timeout(60.0, connect=10.0)
 
 # Tests swap this for an httpx.MockTransport.
 TRANSPORT: httpx.AsyncBaseTransport | None = None
+
+# Settings read as BYTESTAY_<name>. Before the ByteStay rename they were HFL_<name>, which still work.
+_DEPRECATED_SEEN: set[str] = set()
+
+
+def setting(env: dict[str, str], name: str) -> str:
+    """BYTESTAY_<name>, else the old HFL_<name>; the new name wins when both are set.
+    The old name prints a one-line notice on stderr, once per name (stdout belongs to the MCP protocol)."""
+    value = env.get(f"BYTESTAY_{name}", "")
+    if value:
+        return value
+    value = env.get(f"HFL_{name}", "")
+    if value and name not in _DEPRECATED_SEEN:
+        _DEPRECATED_SEEN.add(name)
+        print(f"{USER_AGENT.split('/')[0]}: HFL_{name} is deprecated, use BYTESTAY_{name} "
+              "(the old name still works).", file=sys.stderr)
+    return value
 
 
 @dataclass(frozen=True)
@@ -54,13 +72,14 @@ def target(product: Product, env: dict[str, str] | None = None) -> Target:
     the first tool call explains how to get one."""
     env = dict(os.environ if env is None else env)
     # Maintainers only: call our own host directly with an internal bearer key.
-    if env.get("HFL_API_URL") and env.get("HFL_API_BEARER"):
-        return Target(env["HFL_API_URL"].rstrip("/"), {"Authorization": f"Bearer {env['HFL_API_BEARER']}"}, "direct")
+    url, bearer = setting(env, "API_URL"), setting(env, "API_BEARER")
+    if url and bearer:
+        return Target(url.rstrip("/"), {"Authorization": f"Bearer {bearer}"}, "direct")
     rapid, market = env.get("RAPIDAPI_KEY", ""), env.get("API_MARKET_KEY", "")
-    choice = env.get("HFL_MARKETPLACE", "").lower()
+    choice = setting(env, "MARKETPLACE").lower()
     if choice == "apimarket" or (market and not rapid and choice != "rapidapi"):
         if not market:
-            raise ToolError("HFL_MARKETPLACE is apimarket but API_MARKET_KEY is not set.")
+            raise ToolError("BYTESTAY_MARKETPLACE is apimarket but API_MARKET_KEY is not set.")
         return Target(APIMARKET_BASE + product.slug, {"x-api-market-key": market}, "apimarket")
     if not rapid:
         where = f" or API_MARKET_KEY ({APIMARKET_STORE}{product.slug})" if product.apimarket else ""

@@ -56,7 +56,9 @@ claude mcp add unfold --env RAPIDAPI_KEY=your-rapidapi-key -- uvx --from bytesta
 |---|---|
 | `RAPIDAPI_KEY` | your RapidAPI key |
 | `API_MARKET_KEY` | your api.market key, used when `RAPIDAPI_KEY` is not set |
-| `HFL_MARKETPLACE` | `rapidapi` or `apimarket`, when both keys are set |
+| `BYTESTAY_MARKETPLACE` | `rapidapi` or `apimarket`, when both keys are set |
+
+Up to 0.2.7 the setting was `HFL_MARKETPLACE`. The old name still works, with a one-line notice on stderr.
 
 Without a key the server still starts. The first tool call then explains where to get one.
 

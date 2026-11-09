@@ -16,14 +16,49 @@ def test_rapidapi_by_default():
 
 
 def test_direct_for_maintainers():
-    t = target(P, {"HFL_API_URL": "https://api.example/", "HFL_API_BEARER": "b", "RAPIDAPI_KEY": "rk"})
+    t = target(P, {"BYTESTAY_API_URL": "https://api.example/", "BYTESTAY_API_BEARER": "b", "RAPIDAPI_KEY": "rk"})
     assert t.market == "direct" and t.base == "https://api.example" and t.headers == {"Authorization": "Bearer b"}
 
 
+
+@pytest.mark.parametrize("name", ["MARKETPLACE", "API_URL", "API_BEARER"])
+def test_setting_new_name_only(name, capsys):
+    assert client.setting({f"BYTESTAY_{name}": "new"}, name) == "new"
+    assert client.setting({}, name) == ""
+    assert capsys.readouterr().err == ""
+
+
+@pytest.mark.parametrize("name", ["MARKETPLACE", "API_URL", "API_BEARER"])
+def test_setting_old_name_only_still_works_with_one_notice(name, capsys):
+    env = {f"HFL_{name}": "old"}
+    assert client.setting(env, name) == "old"
+    assert client.setting(env, name) == "old"
+    err = capsys.readouterr().err
+    assert err.count("\n") == 1 and f"HFL_{name} is deprecated, use BYTESTAY_{name}" in err
+
+
+@pytest.mark.parametrize("name", ["MARKETPLACE", "API_URL", "API_BEARER"])
+def test_setting_new_name_wins_when_both_are_set(name, capsys):
+    assert client.setting({f"BYTESTAY_{name}": "new", f"HFL_{name}": "old"}, name) == "new"
+    assert capsys.readouterr().err == ""
+
+
+def test_old_names_still_select_the_target():
+    t = target(P, {"HFL_API_URL": "https://old.example/", "HFL_API_BEARER": "ob", "RAPIDAPI_KEY": "rk"})
+    assert t.market == "direct" and t.base == "https://old.example" and t.headers == {"Authorization": "Bearer ob"}
+    assert target(P, {"RAPIDAPI_KEY": "rk", "API_MARKET_KEY": "mk", "HFL_MARKETPLACE": "apimarket"}).market == "apimarket"
+
+
+def test_new_names_win_over_old_ones_in_the_target():
+    t = target(P, {"BYTESTAY_API_URL": "https://new.example", "HFL_API_URL": "https://old.example",
+                   "BYTESTAY_API_BEARER": "nb", "HFL_API_BEARER": "ob"})
+    assert t.base == "https://new.example" and t.headers == {"Authorization": "Bearer nb"}
+    env = {"RAPIDAPI_KEY": "rk", "API_MARKET_KEY": "mk", "BYTESTAY_MARKETPLACE": "rapidapi", "HFL_MARKETPLACE": "apimarket"}
+    assert target(P, env).market == "rapidapi"
+
 def test_env_is_read_from_os_by_default(monkeypatch):
     monkeypatch.setenv("RAPIDAPI_KEY", "from-os")
-    monkeypatch.delenv("HFL_API_URL", raising=False)
-    monkeypatch.delenv("HFL_MARKETPLACE", raising=False)
+    monkeypatch.delenv("BYTESTAY_MARKETPLACE", raising=False)
     assert target(P).headers["X-RapidAPI-Key"] == "from-os"
 
 
@@ -31,16 +66,16 @@ def test_apimarket_when_only_its_key_is_set_or_chosen():
     t = target(P, {"API_MARKET_KEY": "mk"})
     assert t.market == "apimarket" and t.base == "https://prod.api.market/api/v1/bytestay/unfold"
     assert t.headers == {"x-api-market-key": "mk"}
-    assert target(P, {"RAPIDAPI_KEY": "rk", "API_MARKET_KEY": "mk", "HFL_MARKETPLACE": "apimarket"}).market == "apimarket"
+    assert target(P, {"RAPIDAPI_KEY": "rk", "API_MARKET_KEY": "mk", "BYTESTAY_MARKETPLACE": "apimarket"}).market == "apimarket"
     assert target(P, {"RAPIDAPI_KEY": "rk", "API_MARKET_KEY": "mk"}).market == "rapidapi"
-    assert target(P, {"RAPIDAPI_KEY": "rk", "API_MARKET_KEY": "mk", "HFL_MARKETPLACE": "rapidapi"}).market == "rapidapi"
+    assert target(P, {"RAPIDAPI_KEY": "rk", "API_MARKET_KEY": "mk", "BYTESTAY_MARKETPLACE": "rapidapi"}).market == "rapidapi"
 
 
 def test_key_errors_explain_what_to_do():
     with pytest.raises(ToolError, match="No API key. Set RAPIDAPI_KEY .*api.market"):
         target(P, {})
     with pytest.raises(ToolError, match="API_MARKET_KEY is not set"):
-        target(P, {"RAPIDAPI_KEY": "rk", "HFL_MARKETPLACE": "apimarket"})
+        target(P, {"RAPIDAPI_KEY": "rk", "BYTESTAY_MARKETPLACE": "apimarket"})
 
 
 async def test_apimarket_refusal_points_to_the_store(api, monkeypatch):
@@ -82,7 +117,6 @@ async def test_non_json_and_non_dict_error_bodies(monkeypatch):
             else httpx.Response(503, json=["down"])
     monkeypatch.setattr(client, "TRANSPORT", httpx.MockTransport(handler))
     monkeypatch.setenv("RAPIDAPI_KEY", "rk")
-    monkeypatch.delenv("HFL_API_URL", raising=False)
     with pytest.raises(ToolError, match="502: <html>bad gateway"):
         await call(P, "GET", "/a")
     with pytest.raises(ToolError, match=r"503: \['down'\]"):
@@ -94,6 +128,5 @@ async def test_network_failure(monkeypatch):
         raise httpx.ConnectTimeout("slow")
     monkeypatch.setattr(client, "TRANSPORT", httpx.MockTransport(handler))
     monkeypatch.setenv("RAPIDAPI_KEY", "rk")
-    monkeypatch.delenv("HFL_API_URL", raising=False)
     with pytest.raises(ToolError, match="could not be reached \\(ConnectTimeout\\)"):
         await call(P, "GET", "/x")

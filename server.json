@@ -34,8 +34,8 @@
           "format": "string"
         },
         {
-          "name": "HFL_MARKETPLACE",
-          "description": "rapidapi or apimarket, when both keys are set",
+          "name": "BYTESTAY_MARKETPLACE",
+          "description": "rapidapi or apimarket, when both keys are set (the old name HFL_MARKETPLACE still works)",
           "isRequired": false,
           "isSecret": false,
           "format": "string",
