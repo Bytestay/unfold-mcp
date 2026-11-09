@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.8](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.7...bytestay-unfold-mcp-v0.2.8) (2026-11-09)
+
+
+### Bug Fixes
+
+* read BYTESTAY_* settings, keep HFL_* as a fallback ([#12](https://github.com/Bytestay/unfold-mcp/issues/12)) ([eb33936](https://github.com/Bytestay/unfold-mcp/commit/eb3393633984db404f4ad2c80fc550cece6345c8))
+
 ## [0.2.7](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.6...bytestay-unfold-mcp-v0.2.7) (2026-11-09)
 
 
