@@ -104,6 +104,10 @@ uv venv && uv pip install -e ".[dev]"
 
 `scripts/e2e_stdio.py unfold` runs the server over stdio, as a client would, and calls its tools against the real API. It needs `RAPIDAPI_KEY` or `API_MARKET_KEY`.
 
+## History
+
+Formerly Hybrid Forge Lab. This repository continues `hybridforgelab/unfold-mcp` under the ByteStay name since November 2026, so the older commits come from there.
+
 ## Licence
 
 MIT. Unfold itself is a paid API with a free plan, run by [ByteStay](https://bytestay.pt).
