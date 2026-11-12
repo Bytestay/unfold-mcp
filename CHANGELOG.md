@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.9](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.8...bytestay-unfold-mcp-v0.2.9) (2026-11-12)
+
+
+### Documentation
+
+* note that the repository was formerly Hybrid Forge Lab ([#16](https://github.com/Bytestay/unfold-mcp/issues/16)) ([42353cc](https://github.com/Bytestay/unfold-mcp/commit/42353cc3ebf33ba37ef68ed575ecfa4532477b55))
+* use the mcprush card badge ([#14](https://github.com/Bytestay/unfold-mcp/issues/14)) ([49b686c](https://github.com/Bytestay/unfold-mcp/commit/49b686c8462776876ad15deed3a809c62f1d3a4f))
+
 ## [0.2.8](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.7...bytestay-unfold-mcp-v0.2.8) (2026-11-09)
 
 
