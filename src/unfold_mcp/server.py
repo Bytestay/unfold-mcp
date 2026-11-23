@@ -31,11 +31,11 @@ READ_ONLY = ToolAnnotations(read_only_hint=True, destructive_hint=False, idempot
 @server.tool(annotations=READ_ONLY)
 async def convert_document(
     url: Annotated[str | None, Field(description="Public http(s) URL of the document.")] = None,
-    path: Annotated[str | None, Field(description="Local file to upload instead (up to 10 MB).")] = None,
+    path: Annotated[str | None, Field(description="Local .pdf, .docx, .pptx or .xlsx file to upload to the Unfold API instead (up to 10 MB). Only files inside the working directory (or UNFOLD_MCP_ROOT) are read.")] = None,
     max_chars: Annotated[int, Field(ge=100, le=500_000, description="Cut the Markdown to this many characters.")]
     = 20_000,
 ) -> dict:
-    """Convert one document to Markdown. Give either `url` or `path`. The format is detected from the content."""
+    """Convert one document to Markdown. Give either `url` or `path`. The format is detected from the content. A local `path` file is uploaded to the Unfold API."""
     if bool(url) == bool(path):
         raise ToolError("Give exactly one of url or path.")
     if url:

@@ -37,3 +37,45 @@ async def test_unfold_file_limits(api, tmp_path):
         await unfold.convert_document(path=str(big))
     with pytest.raises(ToolError, match="No such file"):
         await unfold.convert_document(path=str(tmp_path / "missing.pdf"))
+
+
+def _docx(path):
+    import zipfile
+    with zipfile.ZipFile(path, "w") as z:
+        z.writestr("word/document.xml", "<x/>")
+
+
+async def test_path_outside_root_is_refused(api, tmp_path, monkeypatch):
+    root = tmp_path / "root"
+    root.mkdir()
+    (tmp_path / "secret.pdf").write_bytes(b"%PDF-1.4")
+    monkeypatch.chdir(root)
+    for path in ("../secret.pdf", str(tmp_path / "secret.pdf")):
+        with pytest.raises(ToolError, match="outside the allowed folder"):
+            await unfold.convert_document(path=path)
+    (root / "a.pdf").symlink_to(tmp_path / "secret.pdf")
+    with pytest.raises(ToolError, match="outside the allowed folder"):
+        await unfold.convert_document(path="a.pdf")
+    assert not api.requests
+
+
+async def test_wrong_extension_and_magic_are_refused(api, tmp_path):
+    (tmp_path / "id_rsa").write_text("x")
+    with pytest.raises(ToolError, match="not an allowed file type"):
+        await unfold.convert_document(path="id_rsa")
+    (tmp_path / "fake.pdf").write_text("not a pdf")
+    (tmp_path / "fake.docx").write_text("not a zip")
+    _docx(tmp_path / "wrong.xlsx")
+    for name in ("fake.pdf", "fake.docx", "wrong.xlsx"):
+        with pytest.raises(ToolError, match="does not look like"):
+            await unfold.convert_document(path=name)
+    assert not api.requests
+
+
+async def test_docx_and_explicit_root(api, tmp_path, monkeypatch):
+    other = tmp_path / "other"
+    other.mkdir()
+    _docx(other / "a.docx")
+    monkeypatch.setenv("UNFOLD_MCP_ROOT", str(other))
+    await unfold.convert_document(path="a.docx")
+    assert b'filename="a.docx"' in api.last.content

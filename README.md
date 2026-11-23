@@ -84,7 +84,7 @@ Every tool returns the API's JSON response.
 
 ## Privacy
 
-- Local files are read only when a tool is given their path. They are sent to the API for that one request.
+- Local files are read only when a tool is given their path, and are uploaded to the API for that one request. Only files inside the working directory (or the folder in `UNFOLD_MCP_ROOT`) are read, symlinks that leave it are refused, and only `.pdf`, `.docx`, `.pptx` and `.xlsx` (the content must match the type) are accepted.
 - The API processes inputs in memory and doesn't store them. See the [privacy policy](https://unfold.bytestay.pt/privacy.html).
 - Your key is only sent to the marketplace you chose.
 
