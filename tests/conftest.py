@@ -29,11 +29,13 @@ class Recorder:
 
 
 @pytest.fixture(autouse=True)
-def clean_env(monkeypatch):
+def clean_env(monkeypatch, tmp_path):
     """No key or setting leaks in from the developer's shell; deprecation notices start fresh."""
     settings = [f"{prefix}_{name}" for prefix in ("BYTESTAY", "HFL") for name in ("MARKETPLACE", "API_URL", "API_BEARER")]
     for name in ["RAPIDAPI_KEY", "API_MARKET_KEY", *settings]:
         monkeypatch.delenv(name, raising=False)
+    monkeypatch.delenv("UNFOLD_MCP_ROOT", raising=False)
+    monkeypatch.chdir(tmp_path)  # the default root for local paths
     monkeypatch.setattr(client, "_DEPRECATED_SEEN", set())
 
 
