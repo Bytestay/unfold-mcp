@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.10](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.9...bytestay-unfold-mcp-v0.2.10) (2026-11-23)
+
+
+### Bug Fixes
+
+* scope local file paths ([#19](https://github.com/Bytestay/unfold-mcp/issues/19)) ([217b719](https://github.com/Bytestay/unfold-mcp/commit/217b719a29e6e1a132b61ab51f11bcddec41f6b5))
+
 ## [0.2.9](https://github.com/Bytestay/unfold-mcp/compare/bytestay-unfold-mcp-v0.2.8...bytestay-unfold-mcp-v0.2.9) (2026-11-12)
 
 
